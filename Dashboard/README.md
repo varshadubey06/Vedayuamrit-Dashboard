@@ -93,9 +93,17 @@ The dashboard runs at `http://localhost:3001`; its authentication API is served 
 
 ### Admin Login Configuration
 
-The dashboard uses the Next.js app as its authentication server. Do not put admin credentials in Vite environment variables or dashboard source code.
+When deployed on Vercel, the dashboard serves its own authentication API from `api/admin/auth.ts` at `/api/admin/auth`. Set these variables in the Vercel project (Settings → Environment Variables), then redeploy:
 
-Set these environment variables on the **Next.js server** before starting/deploying it:
+```text
+ADMIN_EMAIL=admin@vedayuamrit.com
+ADMIN_PASSWORD=<the admin password>
+ADMIN_SESSION_SECRET=<a random secret with at least 32 characters>
+```
+
+To change the admin password, update `ADMIN_PASSWORD` and redeploy. Do not put admin credentials in `VITE_` variables or dashboard source code.
+
+Alternatively, you can use a separate Next.js app as the authentication server. Set these environment variables on the **Next.js server** before starting/deploying it:
 
 ```text
 ADMIN_EMAIL=admin@vedayuamrit.com
